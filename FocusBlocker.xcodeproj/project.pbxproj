@@ -1,0 +1,494 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA82688DA17947E6B7B85A49 /* FocusBlockerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28B9D2DF283D229D4A4D25D;};
+		D93C393888A3A5026E404422 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086409C773B4984913AE46BF;};
+		880957E2CF3DAE1A9926BE31 /* ModeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992BB269F3739DC4F1B6D71F;};
+		31A3F4209B8AB71B5FE1584B /* DaemonClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C1249FA953C9D4732BD08A;};
+		DF26F727019F6DF2658E2597 /* DaemonRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681565E0E2B40ABD59CE2596;};
+		AAE502D13F6F9CCB6C19A187 /* MenuContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3B37A15CC233AA64A0BE1;};
+		77875A671C09D45C4812FC55 /* SiteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF7ACEA609FF07C7E757675;};
+		EAAF3908DD8F389A130B51E0 /* AppListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ADDFF99D30269336C992AA;};
+		55E57212E6D1DBBB68CB72E7 /* DurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EACA823D738DF0B7F127F4;};
+		5CF569ED7F8EAF3ABDC2DCC1 /* ActiveBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169C7C1727E72E2236763E88;};
+		00AEF3F94C53BA81E11EED59 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE8332455106D4C46C9364;};
+		5BEDA989F0BCFF2D90F88836 /* ModeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B171F3F08C7C0CE9E4805C;};
+		747F8831324BED290AF1ED5B /* ModeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4382288F4D0B9827CFE8C1;};
+		758DC3BAE59F841292899D47 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A75AB343EFE230C32012DD;};
+		C4EB9238F1725A95D9CB43EC /* DaemonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0651CB8868E7D43A56D6F5B0;};
+		48A0A055F48621FA53E315E8 /* Enforcer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7333958C93D44FA9FBF934F9;};
+		8EBC8B225A1C43EA64D21247 /* DNSFlusher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E112E6856838FD9055208BE;};
+		5A3C1E7F2B9D4C6A8E0F1D23 /* AppTerminator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3C1E7F2B9D4C6A8E0F1D24;};
+		868407D5AA633509A72BC151 /* FocusCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9C70DB7A378004CDAB395ED0;};
+		1A386F247E00CA8F6A0EEFF7 /* FocusCore in Frameworks */ = {isa = PBXBuildFile; productRef = 149B47081C5163DF40AB54B0;};
+		7CD0C13798C1BFFB57952800 /* FocusBlockerDaemon in CopyDaemon */ = {isa = PBXBuildFile; fileRef = 3DB6727616FAC0C601FBE9F4; settings = {ATTRIBUTES = (CodeSignOnCopy, ); };};
+		6209ED7648D1293A7174085D /* app.focusblocker.daemon.plist in CopyPlist */ = {isa = PBXBuildFile; fileRef = A716C618A472842E47892570;};
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		541B3ADE29DFEEB892779453 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 927D776FB40F639D042FC5E4;
+			remoteInfo = FocusBlockerDaemon;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		68EBEC819EB00528634E583F /* Embed Daemon */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				7CD0C13798C1BFFB57952800 /* FocusBlockerDaemon */,
+			);
+			name = "Embed Daemon";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B053EDFAD8058940215795B5 /* Embed LaunchDaemon Plist */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Contents/Library/LaunchDaemons";
+			dstSubfolderSpec = 1;
+			files = (
+				6209ED7648D1293A7174085D /* app.focusblocker.daemon.plist */,
+			);
+			name = "Embed LaunchDaemon Plist";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A28B9D2DF283D229D4A4D25D = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FocusBlockerApp.swift"; sourceTree = "<group>";
+		};
+		086409C773B4984913AE46BF = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel.swift"; sourceTree = "<group>";
+		};
+		992BB269F3739DC4F1B6D71F = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModeStore.swift"; sourceTree = "<group>";
+		};
+		63C1249FA953C9D4732BD08A = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DaemonClient.swift"; sourceTree = "<group>";
+		};
+		681565E0E2B40ABD59CE2596 = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DaemonRegistrar.swift"; sourceTree = "<group>";
+		};
+		D2E3B37A15CC233AA64A0BE1 = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MenuContentView.swift"; sourceTree = "<group>";
+		};
+		FEF7ACEA609FF07C7E757675 = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SiteListView.swift"; sourceTree = "<group>";
+		};
+		53ADDFF99D30269336C992AA = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppListView.swift"; sourceTree = "<group>";
+		};
+		25EACA823D738DF0B7F127F4 = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DurationPicker.swift"; sourceTree = "<group>";
+		};
+		169C7C1727E72E2236763E88 = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveBlockView.swift"; sourceTree = "<group>";
+		};
+		14DE8332455106D4C46C9364 = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Components.swift"; sourceTree = "<group>";
+		};
+		E6B171F3F08C7C0CE9E4805C = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModeCardView.swift"; sourceTree = "<group>";
+		};
+		CA4382288F4D0B9827CFE8C1 = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModeEditorView.swift"; sourceTree = "<group>";
+		};
+		A6A75AB343EFE230C32012DD = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "main.swift"; sourceTree = "<group>";
+		};
+		0651CB8868E7D43A56D6F5B0 = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DaemonService.swift"; sourceTree = "<group>";
+		};
+		7333958C93D44FA9FBF934F9 = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enforcer.swift"; sourceTree = "<group>";
+		};
+		8E112E6856838FD9055208BE = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DNSFlusher.swift"; sourceTree = "<group>";
+		};
+		5A3C1E7F2B9D4C6A8E0F1D24 = {
+			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppTerminator.swift"; sourceTree = "<group>";
+		};
+		A716C618A472842E47892570 = {
+			isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "app.focusblocker.daemon.plist"; sourceTree = "<group>";
+		};
+		A69AB540D6FB972C30506EAF = {
+			isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Signing.xcconfig"; sourceTree = "<group>";
+		};
+		996AD237BC284D463E664FFE = {
+			isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusBlocker.app; sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DB6727616FAC0C601FBE9F4 = {
+			isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FocusBlockerDaemon; sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0F87A878AEB94E823836E22B = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				868407D5AA633509A72BC151 /* FocusCore */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA83EA1C87234506F31935B1 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A386F247E00CA8F6A0EEFF7 /* FocusCore */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		71DC27D9F8E3B109C877BFC4 = {
+			isa = PBXGroup;
+			children = (
+				89B104369EBC5E85E7E43C6B,
+				42006AB264CF2AB66A8087C0,
+				6CCCA51AF25F74B906778ED2,
+				113236722DEE1DC96F378B9D,
+			);
+			sourceTree = "<group>";
+		};
+		89B104369EBC5E85E7E43C6B = {
+			isa = PBXGroup;
+			children = (
+				A69AB540D6FB972C30506EAF,
+			);
+			path = "Config";
+			sourceTree = "<group>";
+		};
+		42006AB264CF2AB66A8087C0 = {
+			isa = PBXGroup;
+			children = (
+				A28B9D2DF283D229D4A4D25D,
+				086409C773B4984913AE46BF,
+				992BB269F3739DC4F1B6D71F,
+				63C1249FA953C9D4732BD08A,
+				681565E0E2B40ABD59CE2596,
+				43B428327CE75128E6D52001,
+				CA2DA976D1169AE0BBF0B8BE,
+			);
+			path = "App";
+			sourceTree = "<group>";
+		};
+		43B428327CE75128E6D52001 = {
+			isa = PBXGroup;
+			children = (
+				D2E3B37A15CC233AA64A0BE1,
+				FEF7ACEA609FF07C7E757675,
+				53ADDFF99D30269336C992AA,
+				25EACA823D738DF0B7F127F4,
+				169C7C1727E72E2236763E88,
+				14DE8332455106D4C46C9364,
+				E6B171F3F08C7C0CE9E4805C,
+				CA4382288F4D0B9827CFE8C1,
+			);
+			path = "Views";
+			sourceTree = "<group>";
+		};
+		CA2DA976D1169AE0BBF0B8BE = {
+			isa = PBXGroup;
+			children = (
+				A716C618A472842E47892570,
+			);
+			path = "Resources";
+			sourceTree = "<group>";
+		};
+		6CCCA51AF25F74B906778ED2 = {
+			isa = PBXGroup;
+			children = (
+				A6A75AB343EFE230C32012DD,
+				0651CB8868E7D43A56D6F5B0,
+				7333958C93D44FA9FBF934F9,
+				8E112E6856838FD9055208BE,
+				5A3C1E7F2B9D4C6A8E0F1D24,
+			);
+			path = "Daemon";
+			sourceTree = "<group>";
+		};
+		113236722DEE1DC96F378B9D = {
+			isa = PBXGroup;
+			children = (
+				996AD237BC284D463E664FFE,
+				3DB6727616FAC0C601FBE9F4,
+			);
+			name = "Products";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F01C2E624E08A72BC055B46F /* FocusBlocker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2EF0BFE4C820F767E4303FC;
+			buildPhases = (
+				6B366E3A6159DC0A46CE6169,
+				0F87A878AEB94E823836E22B,
+				68EBEC819EB00528634E583F,
+				B053EDFAD8058940215795B5,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A44CC26EF370A4CD439DE333,
+			);
+			name = FocusBlocker;
+			packageProductDependencies = (
+				9C70DB7A378004CDAB395ED0,
+			);
+			productName = FocusBlocker;
+			productReference = 996AD237BC284D463E664FFE;
+			productType = "com.apple.product-type.application";
+		};
+		927D776FB40F639D042FC5E4 /* FocusBlockerDaemon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5474E323C81B9C64394A7A35;
+			buildPhases = (
+				8AA68976BE62C433F5BEEC26,
+				BA83EA1C87234506F31935B1,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FocusBlockerDaemon;
+			packageProductDependencies = (
+				149B47081C5163DF40AB54B0,
+			);
+			productName = FocusBlockerDaemon;
+			productReference = 3DB6727616FAC0C601FBE9F4;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46F86FAA6BBF9AC94A7E4595 = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = 32D42B6A09FA42C6EFFC8E0F;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 71DC27D9F8E3B109C877BFC4;
+			packageReferences = (
+				ACD0077948E22C32EF72EADD,
+			);
+			productRefGroup = 113236722DEE1DC96F378B9D;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F01C2E624E08A72BC055B46F,
+				927D776FB40F639D042FC5E4,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6B366E3A6159DC0A46CE6169 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA82688DA17947E6B7B85A49 /* FocusBlockerApp.swift */,
+				D93C393888A3A5026E404422 /* AppModel.swift */,
+				880957E2CF3DAE1A9926BE31 /* ModeStore.swift */,
+				31A3F4209B8AB71B5FE1584B /* DaemonClient.swift */,
+				DF26F727019F6DF2658E2597 /* DaemonRegistrar.swift */,
+				AAE502D13F6F9CCB6C19A187 /* MenuContentView.swift */,
+				77875A671C09D45C4812FC55 /* SiteListView.swift */,
+				EAAF3908DD8F389A130B51E0 /* AppListView.swift */,
+				55E57212E6D1DBBB68CB72E7 /* DurationPicker.swift */,
+				5CF569ED7F8EAF3ABDC2DCC1 /* ActiveBlockView.swift */,
+				00AEF3F94C53BA81E11EED59 /* Components.swift */,
+				5BEDA989F0BCFF2D90F88836 /* ModeCardView.swift */,
+				747F8831324BED290AF1ED5B /* ModeEditorView.swift */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8AA68976BE62C433F5BEEC26 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				758DC3BAE59F841292899D47 /* main.swift */,
+				C4EB9238F1725A95D9CB43EC /* DaemonService.swift */,
+				48A0A055F48621FA53E315E8 /* Enforcer.swift */,
+				8EBC8B225A1C43EA64D21247 /* DNSFlusher.swift */,
+				5A3C1E7F2B9D4C6A8E0F1D23 /* AppTerminator.swift */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A44CC26EF370A4CD439DE333 = {
+			isa = PBXTargetDependency;
+			target = 927D776FB40F639D042FC5E4;
+			targetProxy = 541B3ADE29DFEEB892779453;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		08D1B0DDBC8F69240C81E990 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A69AB540D6FB972C30506EAF;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "NO";
+				CURRENT_PROJECT_VERSION = "1";
+				DEBUG_INFORMATION_FORMAT = "dwarf";
+				MACOSX_DEPLOYMENT_TARGET = "13.0";
+				MARKETING_VERSION = "1.0";
+				ONLY_ACTIVE_ARCH = "YES";
+				SDKROOT = "macosx";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "5.0";
+			};
+			name = Debug;
+		};
+		320644C4979C1B7DC9632144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A69AB540D6FB972C30506EAF;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "NO";
+				CURRENT_PROJECT_VERSION = "1";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				MACOSX_DEPLOYMENT_TARGET = "13.0";
+				MARKETING_VERSION = "1.0";
+				SDKROOT = "macosx";
+				SWIFT_COMPILATION_MODE = "wholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = "5.0";
+			};
+			name = Release;
+		};
+		0734E3BF1D7D1FE519145A53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_APP_SANDBOX = "NO";
+				ENABLE_HARDENED_RUNTIME = "YES";
+				GENERATE_INFOPLIST_FILE = "YES";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_LSUIElement = "YES";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.focusblocker.app";
+				PRODUCT_NAME = "FocusBlocker";
+			};
+			name = Debug;
+		};
+		A44521F7D7D0FB5F7D3840DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_APP_SANDBOX = "NO";
+				ENABLE_HARDENED_RUNTIME = "YES";
+				GENERATE_INFOPLIST_FILE = "YES";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_LSUIElement = "YES";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.focusblocker.app";
+				PRODUCT_NAME = "FocusBlocker";
+			};
+			name = Release;
+		};
+		0942B66F5FB29F0CDF0FAC52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CREATE_INFOPLIST_SECTION_IN_BINARY = "YES";
+				ENABLE_HARDENED_RUNTIME = "YES";
+				GENERATE_INFOPLIST_FILE = "YES";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.focusblocker.daemon";
+				PRODUCT_NAME = "FocusBlockerDaemon";
+				SKIP_INSTALL = "YES";
+			};
+			name = Debug;
+		};
+		011C8C4568E3296FAF1C1727 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CREATE_INFOPLIST_SECTION_IN_BINARY = "YES";
+				ENABLE_HARDENED_RUNTIME = "YES";
+				GENERATE_INFOPLIST_FILE = "YES";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.focusblocker.daemon";
+				PRODUCT_NAME = "FocusBlockerDaemon";
+				SKIP_INSTALL = "YES";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32D42B6A09FA42C6EFFC8E0F /* Build configuration list for PBXProject "FocusBlocker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				08D1B0DDBC8F69240C81E990 /* Debug */,
+				320644C4979C1B7DC9632144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2EF0BFE4C820F767E4303FC /* Build configuration list for PBXNativeTarget "FocusBlocker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0734E3BF1D7D1FE519145A53 /* Debug */,
+				A44521F7D7D0FB5F7D3840DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5474E323C81B9C64394A7A35 /* Build configuration list for PBXNativeTarget "FocusBlockerDaemon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0942B66F5FB29F0CDF0FAC52 /* Debug */,
+				011C8C4568E3296FAF1C1727 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		ACD0077948E22C32EF72EADD /* XCLocalSwiftPackageReference "Packages/FocusCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/FocusCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9C70DB7A378004CDAB395ED0 /* FocusCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FocusCore;
+		};
+		149B47081C5163DF40AB54B0 /* FocusCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FocusCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}
