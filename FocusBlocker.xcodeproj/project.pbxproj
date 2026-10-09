@@ -28,6 +28,7 @@
 		868407D5AA633509A72BC151 /* FocusCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9C70DB7A378004CDAB395ED0;};
 		1A386F247E00CA8F6A0EEFF7 /* FocusCore in Frameworks */ = {isa = PBXBuildFile; productRef = 149B47081C5163DF40AB54B0;};
 		7CD0C13798C1BFFB57952800 /* FocusBlockerDaemon in CopyDaemon */ = {isa = PBXBuildFile; fileRef = 3DB6727616FAC0C601FBE9F4; settings = {ATTRIBUTES = (CodeSignOnCopy, ); };};
+		5A3C1E7F2B9D4C6A8E0F1D25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A3C1E7F2B9D4C6A8E0F1D26;};
 		6209ED7648D1293A7174085D /* app.focusblocker.daemon.plist in CopyPlist */ = {isa = PBXBuildFile; fileRef = A716C618A472842E47892570;};
 /* End PBXBuildFile section */
 
@@ -121,6 +122,9 @@
 		5A3C1E7F2B9D4C6A8E0F1D24 = {
 			isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppTerminator.swift"; sourceTree = "<group>";
 		};
+		5A3C1E7F2B9D4C6A8E0F1D26 = {
+			isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets.xcassets"; sourceTree = "<group>";
+		};
 		A716C618A472842E47892570 = {
 			isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "app.focusblocker.daemon.plist"; sourceTree = "<group>";
 		};
@@ -206,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				A716C618A472842E47892570,
+				5A3C1E7F2B9D4C6A8E0F1D26,
 			);
 			path = "Resources";
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 			buildConfigurationList = F2EF0BFE4C820F767E4303FC;
 			buildPhases = (
 				6B366E3A6159DC0A46CE6169,
+				5A3C1E7F2B9D4C6A8E0F1D27,
 				0F87A878AEB94E823836E22B,
 				68EBEC819EB00528634E583F,
 				B053EDFAD8058940215795B5,
@@ -308,6 +314,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5A3C1E7F2B9D4C6A8E0F1D27 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A3C1E7F2B9D4C6A8E0F1D25 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -395,6 +409,7 @@
 				GENERATE_INFOPLIST_FILE = "YES";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = "YES";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "app.focusblocker.app";
 				PRODUCT_NAME = "FocusBlocker";
@@ -409,6 +424,7 @@
 				GENERATE_INFOPLIST_FILE = "YES";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = "YES";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "app.focusblocker.app";
 				PRODUCT_NAME = "FocusBlocker";
