@@ -5,6 +5,24 @@ import FocusCore
 struct ActiveBlockView: View {
     @EnvironmentObject private var model: AppModel
 
+    private static let quotes = [
+        "Derin iş, sığ dikkatle yapılmaz.",
+        "Bir seferde tek şey.",
+        "Bildirimler bekleyebilir, sen beklemiyorsun.",
+        "Küçük adımlar, büyük ilerleme.",
+        "Şu an yaptığın iş, yapabileceğin en iyi iş.",
+        "Dikkat, en değerli sermayen.",
+        "Odaklan. Gerisi gürültü.",
+        "Zor kısım başlamaktı; onu zaten yaptın.",
+        "Akış hali sabır ister.",
+        "Bitirdiğin her blok bir zafer.",
+    ]
+
+    /// Changes every 3 minutes of the block.
+    private var quote: String {
+        Self.quotes[Int(model.elapsed / 180) % Self.quotes.count]
+    }
+
     var body: some View {
         let mode = model.activeMode
         let tint = mode?.color.color ?? Color.accentColor
@@ -37,6 +55,13 @@ struct ActiveBlockView: View {
                 }
             }
             .frame(width: 170, height: 170)
+
+            Text(quote)
+                .font(.callout.italic())
+                .multilineTextAlignment(.center)
+                .id(quote)
+                .transition(.opacity)
+                .animation(.easeInOut(duration: 0.6), value: quote)
 
             Label("Süre dolana kadar durdurulamaz", systemImage: "lock.fill")
                 .font(.caption)

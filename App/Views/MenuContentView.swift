@@ -15,13 +15,14 @@ struct MenuContentView: View {
         VStack(alignment: .leading, spacing: 14) {
             header
 
-            Picker("", selection: Binding(get: { current }, set: { tab = $0 })) {
-                Label("Başlat", systemImage: "play.fill").tag(Tab.start)
-                Label("Modlar", systemImage: "square.grid.2x2.fill").tag(Tab.modes)
+            if !model.isActive {
+                Picker("", selection: Binding(get: { current }, set: { tab = $0 })) {
+                    Label("Başlat", systemImage: "play.fill").tag(Tab.start)
+                    Label("Modlar", systemImage: "square.grid.2x2.fill").tag(Tab.modes)
+                }
+                .pickerStyle(.segmented)
+                .labelsHidden()
             }
-            .pickerStyle(.segmented)
-            .labelsHidden()
-            .disabled(model.isActive)
 
             if model.registration != .enabled {
                 RegistrationBanner()
@@ -45,7 +46,7 @@ struct MenuContentView: View {
             }
         }
         .padding(16)
-        .frame(width: 400, height: 560)
+        .frame(width: 400, height: model.isActive ? 420 : 560)
         .onChange(of: tab) { _ in model.errorMessage = nil }
     }
 
@@ -66,10 +67,13 @@ private struct StartTab: View {
         VStack(alignment: .leading, spacing: 16) {
             if model.isActive {
                 ActiveBlockView()
+            } else if let session = model.completedSession {
+                CompletionCard(session: session) { model.completedSession = nil }
             } else {
                 ModeStrip(onAdd: nil)
                 ModeSummary(mode: model.displayedMode)
                 DurationPicker()
+                FocusStatsLine(today: model.todayFocus, streak: model.streak)
             }
 
             if let message = model.errorMessage {
@@ -78,6 +82,54 @@ private struct StartTab: View {
                     .foregroundStyle(.red)
                     .fixedSize(horizontal: false, vertical: true)
             }
+        }
+    }
+}
+
+private struct FocusStatsLine: View {
+    let today: TimeInterval
+    let streak: Int
+
+    var body: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "chart.bar.fill").foregroundStyle(.secondary)
+            Text("Bugün \(today.durationText)")
+            if streak > 0 {
+                Text("·")
+                Text("🔥 \(streak) gün seri")
+            }
+        }
+        .font(.caption)
+        .foregroundStyle(.secondary)
+    }
+}
+
+/// Shown once after a block finishes, until dismissed.
+private struct CompletionCard: View {
+    let session: FocusSession
+    let onDismiss: () -> Void
+    @State private var appeared = false
+
+    var body: some View {
+        VStack(spacing: 14) {
+            Image(systemName: "checkmark.seal.fill")
+                .font(.system(size: 64))
+                .foregroundStyle(.green)
+                .scaleEffect(appeared ? 1 : 0.3)
+                .rotationEffect(.degrees(appeared ? 0 : -30))
+                .opacity(appeared ? 1 : 0)
+            Text("Tamamlandı!").font(.title2.bold())
+            Text("\(session.duration.durationText) odak. Kısa bir mola ver.")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+            Button("Tamam", action: onDismiss)
+                .buttonStyle(.borderedProminent)
+                .keyboardShortcut(.defaultAction)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.top, 40)
+        .onAppear {
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.55)) { appeared = true }
         }
     }
 }

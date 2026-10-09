@@ -9,7 +9,12 @@ struct FocusBlockerApp: App {
             MenuContentView()
                 .environmentObject(model)
         } label: {
-            Image(systemName: model.isActive ? "lock.fill" : "lock.open")
+            if model.isActive {
+                Image(systemName: "lock.fill")
+                Text(model.remaining.shortClockString).monospacedDigit()
+            } else {
+                Image(systemName: "lock.open")
+            }
         }
         .menuBarExtraStyle(.window)
     }
