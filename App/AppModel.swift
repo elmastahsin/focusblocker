@@ -139,7 +139,7 @@ final class AppModel: ObservableObject {
         let start = Date()
         let end = start.addingTimeInterval(duration.seconds(customMinutes: customMinutes))
         do {
-            try await daemon.start(sites: mode.sites, appBundleIDs: mode.apps.map(\.bundleID), endDate: end)
+            try await daemon.start(sites: mode.enabledSites, appBundleIDs: mode.enabledAppIDs, endDate: end)
             setActive(modeID: mode.id, startedAt: start, endsAt: end)
             completedSession = nil
             errorMessage = nil

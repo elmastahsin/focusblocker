@@ -15,10 +15,18 @@ struct AppListView: View {
 
             ForEach(mode.apps) { app in
                 HStack(spacing: 10) {
-                    AppIcon(bundleID: app.bundleID)
-                    Text(app.name)
-                    Text(app.bundleID).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                    Group {
+                        AppIcon(bundleID: app.bundleID)
+                        Text(app.name)
+                        Text(app.bundleID).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                    }
+                    .opacity(mode.isAppEnabled(bundleID: app.bundleID) ? 1 : 0.45)
                     Spacer()
+                    Toggle("", isOn: enabledBinding(for: app))
+                        .toggleStyle(.switch)
+                        .labelsHidden()
+                        .controlSize(.small)
+                        .disabled(isLocked)
                     Button { remove(app) } label: {
                         Image(systemName: "minus.circle.fill").foregroundStyle(.secondary)
                     }
@@ -34,6 +42,17 @@ struct AppListView: View {
                 Text(pickError).font(.caption).foregroundStyle(.red)
             }
         }
+    }
+
+    private func enabledBinding(for app: BlockedApp) -> Binding<Bool> {
+        Binding(
+            get: { mode.isAppEnabled(bundleID: app.bundleID) },
+            set: { enabled in
+                var copy = mode
+                copy.setApp(bundleID: app.bundleID, enabled: enabled)
+                mode = copy
+            }
+        )
     }
 
     private func remove(_ app: BlockedApp) {

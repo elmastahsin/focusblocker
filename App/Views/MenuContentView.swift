@@ -180,19 +180,19 @@ private struct ModeSummary: View {
 
     var body: some View {
         if mode.isEmpty {
-            Text("Bu modda engellenecek bir şey yok. \"Modlar\" sekmesinden site veya uygulama ekle.")
+            Text("Bu modda açık site veya uygulama yok. \"Modlar\" sekmesinden ekle ya da aç.")
                 .font(.caption)
                 .foregroundStyle(.orange)
                 .fixedSize(horizontal: false, vertical: true)
         } else {
             HStack(spacing: 10) {
                 HStack(spacing: -6) {
-                    ForEach(mode.sites.prefix(6), id: \.self) { site in
+                    ForEach(mode.enabledSites.prefix(6), id: \.self) { site in
                         SiteIcon(domain: site, size: 24)
                             .overlay(Circle().stroke(Color(nsColor: .windowBackgroundColor), lineWidth: 2))
                     }
                 }
-                Text("\(mode.sites.count) site · \(mode.apps.count) uygulama")
+                Text("\(mode.enabledSites.count) site · \(mode.enabledAppIDs.count) uygulama")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Spacer()

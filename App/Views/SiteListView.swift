@@ -14,9 +14,17 @@ struct SiteListView: View {
 
             ForEach(mode.sites, id: \.self) { site in
                 HStack(spacing: 10) {
-                    SiteIcon(domain: site)
-                    Text(site)
+                    Group {
+                        SiteIcon(domain: site)
+                        Text(site)
+                    }
+                    .opacity(mode.isSiteEnabled(site) ? 1 : 0.45)
                     Spacer()
+                    Toggle("", isOn: enabledBinding(for: site))
+                        .toggleStyle(.switch)
+                        .labelsHidden()
+                        .controlSize(.small)
+                        .disabled(isLocked)
                     Button { remove(site) } label: {
                         Image(systemName: "minus.circle.fill").foregroundStyle(.secondary)
                     }
@@ -49,6 +57,17 @@ struct SiteListView: View {
         } else {
             inputError = "Geçersiz site: \(input)"
         }
+    }
+
+    private func enabledBinding(for site: String) -> Binding<Bool> {
+        Binding(
+            get: { mode.isSiteEnabled(site) },
+            set: { enabled in
+                var copy = mode
+                copy.setSite(site, enabled: enabled)
+                mode = copy
+            }
+        )
     }
 
     private func remove(_ site: String) {

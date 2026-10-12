@@ -53,7 +53,7 @@ struct DurationPicker: View {
         alert.informativeText = """
         Başlattıktan sonra durduramazsın.
         Süre: \(seconds.clockString). \
-        \(mode.sites.count) site, \(mode.apps.count) uygulama engellenecek.
+        \(mode.enabledSites.count) site, \(mode.enabledAppIDs.count) uygulama engellenecek.
         """
         alert.addButton(withTitle: "Başlat")
         alert.addButton(withTitle: "Vazgeç")

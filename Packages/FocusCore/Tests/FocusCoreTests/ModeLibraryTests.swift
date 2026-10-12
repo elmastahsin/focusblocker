@@ -128,7 +128,73 @@ final class ModeLibraryTests: XCTestCase {
         XCTAssertTrue(m.isEmpty)
     }
 
+    func testSwitchedOffItemsStayListedButAreNotBlocked() {
+        var m = mode("A", sites: ["a.com", "b.com"])
+        m.addApp(BlockedApp(bundleID: "com.example.One", name: "One"))
+        m.addApp(BlockedApp(bundleID: "com.example.Two", name: "Two"))
+        m.setSite("a.com", enabled: false)
+        m.setApp(bundleID: "com.example.One", enabled: false)
+        XCTAssertEqual(m.sites, ["a.com", "b.com"])
+        XCTAssertEqual(m.enabledSites, ["b.com"])
+        XCTAssertEqual(m.enabledAppIDs, ["com.example.Two"])
+        XCTAssertFalse(m.isSiteEnabled("a.com"))
+        XCTAssertFalse(m.isAppEnabled(bundleID: "com.example.One"))
+
+        m.setSite("a.com", enabled: true)
+        XCTAssertEqual(m.enabledSites, ["a.com", "b.com"])
+    }
+
+    func testSwitchIgnoresItemsNotInMode() {
+        var m = mode("A")
+        m.setSite("other.com", enabled: false)
+        m.setApp(bundleID: "com.example.Missing", enabled: false)
+        XCTAssertTrue(m.disabledSites.isEmpty)
+        XCTAssertTrue(m.disabledAppIDs.isEmpty)
+    }
+
+    func testRemovingClearsSwitchState() {
+        var m = mode("A", sites: ["a.com"])
+        m.addApp(BlockedApp(bundleID: "com.example.App", name: "App"))
+        m.setSite("a.com", enabled: false)
+        m.setApp(bundleID: "com.example.App", enabled: false)
+        m.removeSite("a.com")
+        m.removeApp(bundleID: "com.example.App")
+        XCTAssertTrue(m.disabledSites.isEmpty)
+        XCTAssertTrue(m.disabledAppIDs.isEmpty)
+
+        m.addSite("a.com")
+        XCTAssertEqual(m.enabledSites, ["a.com"])
+    }
+
+    func testAllSwitchedOffCountsAsEmpty() {
+        var m = mode("A", sites: ["a.com"])
+        m.addApp(BlockedApp(bundleID: "com.example.App", name: "App"))
+        m.setSite("a.com", enabled: false)
+        XCTAssertFalse(m.isEmpty)
+        m.setApp(bundleID: "com.example.App", enabled: false)
+        XCTAssertTrue(m.isEmpty)
+    }
+
     // MARK: Codable
+
+    func testCodableRoundTripKeepsSwitchState() throws {
+        var m = mode("A", sites: ["a.com", "b.com"])
+        m.addApp(BlockedApp(bundleID: "com.example.App", name: "App"))
+        m.setSite("b.com", enabled: false)
+        m.setApp(bundleID: "com.example.App", enabled: false)
+        let data = try JSONEncoder().encode(m)
+        XCTAssertEqual(try JSONDecoder().decode(FocusMode.self, from: data), m)
+    }
+
+    func testDecodesModesSavedBeforeSwitches() throws {
+        let json = """
+        {"id":"8D1F0C2A-6B7E-4F5A-9C3D-1E2F3A4B5C6D","name":"Old","symbol":"star.fill","color":"blue",
+         "sites":["a.com"],"apps":[{"bundleID":"com.example.App","name":"App"}]}
+        """
+        let m = try JSONDecoder().decode(FocusMode.self, from: Data(json.utf8))
+        XCTAssertEqual(m.enabledSites, ["a.com"])
+        XCTAssertEqual(m.enabledAppIDs, ["com.example.App"])
+    }
 
     func testCodableRoundTrip() throws {
         let library = ModeLibrary.starter()
