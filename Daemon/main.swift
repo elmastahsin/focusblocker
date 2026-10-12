@@ -23,4 +23,21 @@ if let teamID = CodeSigningRequirement.ownTeamID(),
     log.fault("daemon is not signed with a Team ID, XPC disabled; enforcement of existing state continues")
 }
 
+// An app update replaces the bundle, but launchd keeps running the old binary. Exit once the file
+// on disk changes: KeepAlive relaunches the new one and the Enforcer resumes the block from disk.
+let executablePath = Bundle.main.executablePath ?? CommandLine.arguments[0]
+func executableFileNumber() -> Int? {
+    try? FileManager.default.attributesOfItem(atPath: executablePath)[.systemFileNumber] as? Int
+}
+let launchedFileNumber = executableFileNumber()
+let updateWatcher = DispatchSource.makeTimerSource(queue: .global(qos: .utility))
+updateWatcher.schedule(deadline: .now() + 30, repeating: 30)
+updateWatcher.setEventHandler {
+    // Missing file: Sparkle is mid-swap, check again next time.
+    guard let launchedFileNumber, let current = executableFileNumber(), current != launchedFileNumber else { return }
+    log.notice("daemon binary replaced on disk, exiting for relaunch")
+    enforcer.exitBetweenTicks()
+}
+updateWatcher.resume()
+
 dispatchMain()

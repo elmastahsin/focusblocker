@@ -27,6 +27,7 @@
 		5A3C1E7F2B9D4C6A8E0F1D23 /* AppTerminator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3C1E7F2B9D4C6A8E0F1D24;};
 		868407D5AA633509A72BC151 /* FocusCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9C70DB7A378004CDAB395ED0;};
 		1A386F247E00CA8F6A0EEFF7 /* FocusCore in Frameworks */ = {isa = PBXBuildFile; productRef = 149B47081C5163DF40AB54B0;};
+		B7E2A1C40D3F4E5A8B9C0D11 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = B7E2A1C40D3F4E5A8B9C0D12;};
 		7CD0C13798C1BFFB57952800 /* FocusBlockerDaemon in CopyDaemon */ = {isa = PBXBuildFile; fileRef = 3DB6727616FAC0C601FBE9F4; settings = {ATTRIBUTES = (CodeSignOnCopy, ); };};
 		5A3C1E7F2B9D4C6A8E0F1D25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A3C1E7F2B9D4C6A8E0F1D26;};
 		6209ED7648D1293A7174085D /* app.focusblocker.daemon.plist in CopyPlist */ = {isa = PBXBuildFile; fileRef = A716C618A472842E47892570;};
@@ -128,6 +129,9 @@
 		A716C618A472842E47892570 = {
 			isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "app.focusblocker.daemon.plist"; sourceTree = "<group>";
 		};
+		B7E2A1C40D3F4E5A8B9C0D14 = {
+			isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info.plist"; sourceTree = "<group>";
+		};
 		A69AB540D6FB972C30506EAF = {
 			isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Signing.xcconfig"; sourceTree = "<group>";
 		};
@@ -145,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				868407D5AA633509A72BC151 /* FocusCore */,
+				B7E2A1C40D3F4E5A8B9C0D11 /* Sparkle */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +216,7 @@
 			children = (
 				A716C618A472842E47892570,
 				5A3C1E7F2B9D4C6A8E0F1D26,
+				B7E2A1C40D3F4E5A8B9C0D14,
 			);
 			path = "Resources";
 			sourceTree = "<group>";
@@ -257,6 +263,7 @@
 			name = FocusBlocker;
 			packageProductDependencies = (
 				9C70DB7A378004CDAB395ED0,
+				B7E2A1C40D3F4E5A8B9C0D12,
 			);
 			productName = FocusBlocker;
 			productReference = 996AD237BC284D463E664FFE;
@@ -302,6 +309,7 @@
 			mainGroup = 71DC27D9F8E3B109C877BFC4;
 			packageReferences = (
 				ACD0077948E22C32EF72EADD,
+				B7E2A1C40D3F4E5A8B9C0D13,
 			);
 			productRefGroup = 113236722DEE1DC96F378B9D;
 			projectDirPath = "";
@@ -409,6 +417,7 @@
 				GENERATE_INFOPLIST_FILE = "YES";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = "YES";
+				INFOPLIST_FILE = "App/Resources/Info.plist";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "app.focusblocker.app";
@@ -424,6 +433,7 @@
 				GENERATE_INFOPLIST_FILE = "YES";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = "YES";
+				INFOPLIST_FILE = "App/Resources/Info.plist";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "app.focusblocker.app";
@@ -494,6 +504,17 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		B7E2A1C40D3F4E5A8B9C0D13 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		9C70DB7A378004CDAB395ED0 /* FocusCore */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -502,6 +523,11 @@
 		149B47081C5163DF40AB54B0 /* FocusCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FocusCore;
+		};
+		B7E2A1C40D3F4E5A8B9C0D12 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B7E2A1C40D3F4E5A8B9C0D13 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
 		};
 /* End XCSwiftPackageProductDependency section */
 

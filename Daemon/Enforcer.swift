@@ -77,6 +77,11 @@ final class Enforcer {
         }
     }
 
+    /// Exits between ticks so no hosts or state write is cut off.
+    func exitBetweenTicks() -> Never {
+        queue.sync { exit(0) }
+    }
+
     // MARK: - Queue-confined
 
     private func loadState() {

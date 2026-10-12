@@ -6,6 +6,7 @@ struct MenuContentView: View {
     enum Tab { case start, modes }
 
     @EnvironmentObject private var model: AppModel
+    @EnvironmentObject private var updater: Updater
     @State private var tab: Tab = .start
 
     var body: some View {
@@ -38,6 +39,9 @@ struct MenuContentView: View {
 
             Divider()
             HStack {
+                Button("Güncellemeleri kontrol et") { updater.checkForUpdates() }
+                    .buttonStyle(.borderless)
+                    .font(.callout)
                 Spacer()
                 Button("Çık") { NSApplication.shared.terminate(nil) }
                     .buttonStyle(.borderless)
