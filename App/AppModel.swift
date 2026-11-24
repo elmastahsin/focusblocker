@@ -248,13 +248,16 @@ final class AppModel: ObservableObject {
                 center.add(UNNotificationRequest(identifier: id, content: content, trigger: trigger))
             }
 
-            center.removePendingNotificationRequests(withIdentifiers: ["block.warning", "block.end"])
+            center.removePendingNotificationRequests(withIdentifiers: ["block.warning", "block.end", "block.restart"])
             if end.timeIntervalSinceNow > 600 {
                 schedule(id: "block.warning", at: end.addingTimeInterval(-300),
                          title: "5 dakika kaldı", body: "\(modeName) bloğu birazdan bitiyor. Son düzlük!")
             }
             schedule(id: "block.end", at: end,
                      title: "Odak tamamlandı 🎉", body: "\(modeName) bloğu bitti. Kısa bir mola hak ettin.")
+            // Starting a new block reschedules (and so cancels) this.
+            schedule(id: "block.restart", at: end.addingTimeInterval(300),
+                     title: "Mola bitti ⏰", body: "Yeni bir \(modeName) bloğu başlatmaya hazır mısın?")
         }
     }
 }
