@@ -50,7 +50,8 @@ struct MenuContentView: View {
             }
         }
         .padding(16)
-        .frame(width: 400, height: model.isActive ? 420 : 560)
+        // Start tab fits its content (custom duration / banner grow it); Modes needs room for its lists.
+        .frame(width: 400, height: model.isActive ? 420 : (current == .modes ? 560 : nil))
         .onChange(of: tab) { _ in model.errorMessage = nil }
     }
 
@@ -78,6 +79,7 @@ private struct StartTab: View {
                 ModeSummary(mode: model.displayedMode)
                 DurationPicker()
                 FocusStatsLine(today: model.todayFocus, streak: model.streak)
+                FocusHeatmap(grid: model.history.weeklyGrid(weeks: FocusHeatmap.weeks, endingAt: model.now))
             }
 
             if let message = model.errorMessage {
@@ -105,6 +107,56 @@ private struct FocusStatsLine: View {
         }
         .font(.caption)
         .foregroundStyle(.secondary)
+    }
+}
+
+/// GitHub-style grid: one column per week, one row per weekday, greener = more focus.
+private struct FocusHeatmap: View {
+    /// Fixed, not flexible: the menu bar window sizes to its minimum, which collapses flexible cells.
+    /// 23 weeks × (13 + 3) - 3 = 365pt, fills the 368pt content width.
+    static let weeks = 23
+    private static let cell: CGFloat = 13
+
+    let grid: [[(date: Date, focus: TimeInterval)?]]
+
+    var body: some View {
+        HStack(spacing: 3) {
+            ForEach(grid.indices, id: \.self) { week in
+                VStack(spacing: 3) {
+                    ForEach(grid[week].indices, id: \.self) { weekday in
+                        cell(grid[week][weekday])
+                    }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func cell(_ day: (date: Date, focus: TimeInterval)?) -> some View {
+        let shape = RoundedRectangle(cornerRadius: 2)
+        if let day {
+            Group {
+                if day.focus > 0 {
+                    shape.fill(Color.green.opacity(opacity(day.focus)))
+                } else {
+                    shape.fill(.quaternary)
+                }
+            }
+            .frame(width: Self.cell, height: Self.cell)
+            .help("\(day.date.formatted(.dateTime.day().month(.abbreviated))) · \(day.focus.durationText)")
+        } else {
+            Color.clear.frame(width: Self.cell, height: Self.cell)
+        }
+    }
+
+    /// Fixed thresholds so days stay comparable over time.
+    private func opacity(_ focus: TimeInterval) -> Double {
+        switch focus {
+        case ..<1800: return 0.3
+        case ..<3600: return 0.55
+        case ..<7200: return 0.8
+        default: return 1
+        }
     }
 }
 

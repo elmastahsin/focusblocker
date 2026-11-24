@@ -40,6 +40,24 @@ public struct FocusHistory: Codable, Equatable, Sendable {
         }
     }
 
+    /// Days of the last `weeks` weeks (columns, oldest first), 7 per week, aligned to `calendar.firstWeekday`.
+    /// Days after `now`'s day are nil.
+    public func weeklyGrid(weeks: Int, endingAt now: Date,
+                           calendar: Calendar = .current) -> [[(date: Date, focus: TimeInterval)?]] {
+        let today = calendar.startOfDay(for: now)
+        guard weeks > 0,
+              let thisWeek = calendar.dateInterval(of: .weekOfYear, for: now)?.start,
+              let first = calendar.date(byAdding: .weekOfYear, value: -(weeks - 1), to: thisWeek) else { return [] }
+        // shortcut: scans every session per cell; bucket sessions in one pass if history grows to thousands.
+        return (0..<weeks).map { week in
+            (0..<7).map { weekday in
+                guard let day = calendar.date(byAdding: .day, value: week * 7 + weekday, to: first),
+                      day <= today else { return nil }
+                return (day, totalFocus(on: day, calendar: calendar))
+            }
+        }
+    }
+
     /// Consecutive days with focus, ending today. If today has none yet, counting starts from yesterday.
     public func streak(endingAt now: Date, calendar: Calendar = .current) -> Int {
         var day = calendar.startOfDay(for: now)
